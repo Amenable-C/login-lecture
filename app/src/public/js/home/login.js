@@ -2,14 +2,14 @@
 
 const id = document.querySelector("#id"),
     paword = document.querySelector("#psword"),
-    logintBtn = document.querySelector("button");
+    loginBtn = document.querySelector("button");
 
-logintBtn.addEventListener("click", login);
+loginBtn.addEventListener("click", login);
 
 function login(){
     const req = {
         id: id.value,
-        paword: psword.value,
+        psword: psword.value,
     };
     
 
@@ -19,6 +19,19 @@ function login(){
             "Content-Type": "application/json"
         },
         body:JSON.stringify(req),
-    }).then((res) => res.json()).then((res) => {});
-
+    })
+    .then((res) => res.json())
+    .then((res) => {
+        if (res.success) {
+            location.href ="/";
+        }
+        else{
+            alert(res.msg);
+        }
+        
+    })
+    .catch((err) => {
+        console.error("로그인 중 에러 발생");
+    });
+    
 }
