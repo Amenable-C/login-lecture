@@ -11,6 +11,14 @@ function login(){
         id: id.value,
         paword: psword.value,
     };
-    console.log(req);
+    
+
+    fetch("/login", {
+        methond: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(req)
+    });
 
 }
